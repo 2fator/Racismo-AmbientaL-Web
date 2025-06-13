@@ -3,1280 +3,924 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Curso Interativo de Racismo Ambiental</title>
+<title>Curso de Racismo Ambiental - Aprenda e Transforme</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
-  @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+  :root {
+    --clr-primary: #6a0dad;
+    --clr-secondary: #20c997;
+    --clr-accent: #ff6f61;
+    --clr-bg-light: #f4f6f8;
+    --clr-bg-dark: #1c1c1e;
+    --clr-text-dark: #2d2d34;
+    --clr-text-light: #fafafa;
+    --font-family: 'Inter', sans-serif;
 
-  /* Reset and global */
-  * {
-    box-sizing: border-box;
+    --space-xs: 8px;
+    --space-sm: 16px;
+    --space-md: 24px;
+    --space-lg: 48px;
+    --space-xl: 64px;
+    --border-radius: 16px;
+
+    --header-height: 64px;
+    --nav-height: 48px;
   }
 
-  html {
-    scroll-behavior: smooth;
+  /* Reset */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  body, h1,h2,h3,p,ul,li,a,button {
+    margin: 0; padding: 0;
+    font-weight: 400;
+  }
+  ul {
+    list-style:none;
+  }
+  a {
+    text-decoration:none;
+    color: inherit;
+  }
+  button {
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-family: inherit;
   }
 
   body {
-    margin: 0;
-    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #121212, #1e1e1e);
-    color: #ececec;
+    font-family: var(--font-family);
+    background-color: var(--clr-bg-light);
+    color: var(--clr-text-dark);
+    line-height: 1.6;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
   }
 
-  a {
-    color: #82b1ff;
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
-
-  a:hover,
-  a:focus {
-    color: #448aff;
-    outline: none;
-  }
-
-  h1, h2, h3 {
-    font-weight: 700;
-    margin-bottom: 16px;
-    line-height: 1.2;
-    color: #bbdefb;
-  }
-
-  h1 {
-    font-size: 2.75rem;
-  }
-
-  h2 {
-    font-size: 2rem;
-  }
-
-  h3 {
-    font-size: 1.5rem;
-  }
-
-  p, li {
-    font-weight: 400;
-    font-size: 1rem;
-    line-height: 1.5;
-    margin-bottom: 16px;
-  }
-
-  ul {
-    padding-left: 1.25rem;
-    margin-bottom: 20px;
-  }
-
-  li {
-    margin-bottom: 10px;
-  }
-
-  header, footer {
-    background-color: #263238;
-    color: #ececec;
-    padding: 24px 20px;
-    text-align: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
-  }
-
-  header h1 {
-    margin: 0;
-  }
-
-  footer p {
-    margin: 0;
-    font-weight: 500;
-    font-size: 0.9rem;
-    color: #90a4ae;
-  }
-
-  nav {
-    background-color: #37474f;
-    padding: 12px 20px;
-  }
-
-  nav ul {
+  /* HEADER */
+  header {
+    background: linear-gradient(135deg, var(--clr-primary), var(--clr-secondary));
+    color: var(--clr-text-light);
+    height: var(--header-height);
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    list-style: none;
-    gap: 30px;
-    margin: 0;
-    padding: 0;
-  }
-
-  nav li {
-  }
-
-  nav a {
-    color: #b0bec5;
-    font-weight: 600;
-    font-size: 1rem;
-    padding: 8px 14px;
-    border-radius: 12px;
-    display: inline-flex;
     align-items: center;
-    gap: 6px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    position: relative;
+    justify-content: space-between;
+    padding: 0 var(--space-lg);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgb(32 201 151 / 0.3);
   }
-
-  nav a:hover,
-  nav a:focus {
-    background-color: #607d8b;
-    color: #fff;
-    outline: none;
-  }
-
-  main {
-    flex-grow: 1;
-    max-width: 1080px;
-    margin: 32px auto 64px;
-    padding: 0 20px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 48px;
-  }
-
-  section {
-    background-color: #263238aa;
-    padding: 32px 40px;
-    border-radius: 18px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.85);
-    backdrop-filter: saturate(200%) blur(20px);
-  }
-
-  .section-content {
-    max-width: 740px;
-    margin: 0 auto;
-  }
-
-  /* Buttons used for games nav */
-  .games-nav {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 18px;
-    justify-content: center;
-    margin-bottom: 28px;
-  }
-
-  .games-nav button {
+  header .logo {
+    font-weight: 700;
+    font-size: 1.4rem;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    user-select: none;
     display: flex;
     align-items: center;
     gap: 8px;
-    background: linear-gradient(135deg,#448aff,#82b1ff);
-    border: none;
-    color: #fff;
-    font-weight: 700;
-    border-radius: 30px;
-    padding: 14px 26px;
-    font-size: 1rem;
-    cursor: pointer;
-    box-shadow: 0 5px 15px rgba(66, 165, 245,.6);
-    user-select: none;
-    transition:
-      background-color 0.3s ease,
-      box-shadow 0.3s ease,
-      transform 0.3s ease;
   }
-
-  .games-nav button:hover,
-  .games-nav button:focus {
-    background: linear-gradient(135deg,#2962ff,#448aff);
-    box-shadow: 0 8px 30px rgba(66, 165, 245, .9);
-    transform: scale(1.08);
-    outline: none;
+  header .logo .material-icons {
+    font-size: 32px;
   }
-
-  /* Material icon style */
-  .material-icons {
-    font-size: 20px;
-    vertical-align: middle;
+  /* NAVIGATION */
+  nav {
+    display: flex;
+    gap: var(--space-lg);
   }
-
-  /* Container for game area */
-  .game-container {
-    max-width: 720px;
-    margin: 0 auto;
-    background-color: #1e2a33;
-    padding: 30px 36px;
-    border-radius: 16px;
-    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.85);
-    color: #ececec;
-  }
-
-  /* QUIZ Game */
-  .quiz-question {
-    font-size: 1.4rem;
-    margin-bottom: 24px;
+  nav a {
+    color: var(--clr-text-light);
     font-weight: 600;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 8px;
+    border-radius: 12px;
+    transition: background-color 0.3s ease;
   }
-  .quiz-options {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 24px 0;
+  nav a .material-icons {
+    font-size: 20px;
+  }
+  nav a:hover,
+  nav a.active {
+    background-color: var(--clr-accent);
+    box-shadow: 0 8px 15px rgb(255 111 97 / 0.4);
+  }
+
+  /* Mobile hamburger */
+  .hamburger {
+    display:none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    width: 24px;
+    height: 24px;
+  }
+  .hamburger span {
+    height: 3px;
+    background: var(--clr-text-light);
+    border-radius: 2px;
+  }
+
+  /* Sidebar menu (mobile) */
+  @media (max-width: 768px) {
+    nav {
+      position: fixed;
+      top: var(--header-height);
+      right: -100%;
+      width: 220px;
+      height: calc(100vh - var(--header-height));
+      background: var(--clr-primary);
+      flex-direction: column;
+      padding: var(--space-lg);
+      gap: var(--space-lg);
+      transition: right 0.3s ease-in-out;
+      z-index: 1500;
+      border-radius: 16px 0 0 16px;
+    }
+    nav.show {
+      right: 0;
+    }
+    nav a {
+      font-size: 1.2rem;
+      padding: 12px 16px;
+    }
+    .hamburger {
+      display:flex;
+    }
+  }
+
+  /* MAIN container */
+  main {
+    flex-grow: 1;
+    max-width: 1080px;
+    padding: var(--space-lg);
+    margin: 0 auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+
+  /* SECTIONS */
+  section {
+    padding: var(--space-lg);
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: 0 8px 24px rgb(32 201 151 / 0.1);
+  }
+  section:focus-within {
+    outline: 3px solid var(--clr-accent);
+  }
+  section h2 {
+    font-weight: 700;
+    font-size: 2rem;
+    margin-bottom: var(--space-md);
+    color: var(--clr-primary);
+  }
+  section p {
+    font-size: 1.125rem;
+    margin-bottom: var(--space-md);
+    color: #444;
+  }
+  section ul {
+    margin-left: var(--space-md);
+    margin-bottom: var(--space-md);
+  }
+  section ul li {
+    margin-bottom: var(--space-xs);
+    font-size: 1.1rem;
+  }
+
+  /* Modules grid */
+  .modules-list {
+    display: grid;
+    gap: var(--space-md);
+    grid-template-columns: repeat(auto-fill,minmax(280px,1fr));
+  }
+  .module-card {
+    background: linear-gradient(135deg, var(--clr-secondary), var(--clr-primary));
+    color: var(--clr-text-light);
+    padding: var(--space-md);
+    border-radius: var(--border-radius);
+    box-shadow: 0 6px 18px rgb(32 201 151 / 0.3);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
     display: flex;
     flex-direction: column;
-    gap: 14px;
-  }
-  .quiz-options button {
-    background-color: #37474f;
-    border: none;
-    border-radius: 12px;
-    padding: 14px 24px;
-    color: #ececec;
-    font-weight: 600;
-    font-size: 1rem;
-    cursor: pointer;
-    box-shadow: inset 0 0 8px #0006;
-    transition: background-color 0.25s ease, box-shadow 0.25s ease;
-    text-align: left;
+    justify-content: center;
     user-select: none;
   }
-  .quiz-options button:hover,
-  .quiz-options button:focus {
-    background-color: #607d8b;
-    outline: none;
+  .module-card:hover, .module-card:focus-within {
+    box-shadow: 0 10px 28px rgb(255 111 97 / 0.7);
+    transform: translateY(-6px);
   }
-  .quiz-options button.correct {
-    background-color: #2e7d32 !important;
-    box-shadow: 0 0 10px #2e7d32cc !important;
-  }
-  .quiz-options button.wrong {
-    background-color: #c62828 !important;
-    box-shadow: 0 0 10px #c62828cc !important;
-  }
-  .quiz-result {
+  .module-card h3 {
     font-weight: 700;
+    margin-bottom: var(--space-xs);
     font-size: 1.3rem;
-    margin-top: 18px;
-    text-align: center;
-    color: #82b1ff;
   }
-  .quiz-nav-btns {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-  }
-  .quiz-nav-btns button {
-    background: linear-gradient(135deg,#2196f3,#90caf9);
-    color: #fff;
-    box-shadow: 0 5px 15px rgba(33, 150, 243, 0.7);
-  }
-  .quiz-nav-btns button:disabled {
-    background-color: #444c54;
-    box-shadow: none;
-    cursor: not-allowed;
+  .module-card p {
+    font-size: 1rem;
+    color: var(--clr-text-light);
   }
 
-  /* MEMORY Game */
-  .memory-grid {
+  /* Form */
+  form {
+    max-width: 480px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+  label {
+    font-weight: 600;
+    color: var(--clr-primary);
+  }
+  input[type="text"],
+  input[type="email"] {
+    padding: 12px 16px;
+    font-size: 1rem;
+    border: 2px solid var(--clr-secondary);
+    border-radius: 12px;
+    transition: border-color 0.3s ease;
+  }
+  input[type="text"]:focus,
+  input[type="email"]:focus {
+    outline: none;
+    border-color: var(--clr-accent);
+    box-shadow: 0 0 8px var(--clr-accent);
+  }
+  button[type="submit"] {
+    background-color: var(--clr-accent);
+    padding: 14px 0;
+    border-radius: 12px;
+    color: white;
+    font-weight: 700;
+    font-size: 1.125rem;
+    transition: background-color 0.3s ease;
+  }
+  button[type="submit"]:hover,
+  button[type="submit"]:focus {
+    background-color: #e94f40;
+    outline: none;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--clr-primary);
+    color: var(--clr-text-light);
+    text-align: center;
+    font-size: 0.9rem;
+    padding: var(--space-sm);
+    user-select: none;
+  }
+
+  /* QUIZ */
+  #quiz {
+    max-width: 700px;
+    margin: 0 auto;
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: 0 8px 30px rgb(32 201 151 / 0.15);
+    padding: var(--space-lg);
+    user-select: none;
+  }
+  #quiz h2 {
+    color: var(--clr-secondary);
+    margin-bottom: var(--space-md);
+    font-weight: 700;
+  }
+  #question {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: var(--space-md);
+  }
+  .answers {
+    list-style: none;
+    padding: 0;
+    margin: 0;
     display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(98px,1fr));
-    gap: 18px;
-    justify-items: center;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-sm);
   }
-  .memory-card {
-    width: 98px;
-    height: 128px;
-    perspective: 700px;
+  .answers button {
+    padding: var(--space-sm);
+    border-radius: 12px;
+    border: 2px solid var(--clr-secondary);
+    background: white;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+  .answers button:hover,
+  .answers button:focus {
+    background-color: var(--clr-secondary);
+    color: white;
+    outline: none;
+  }
+  .answers button.correct {
+    background: #198754;
+    border-color: #198754;
+    color: white;
+    cursor: default;
+  }
+  .answers button.incorrect {
+    background: #dc3545;
+    border-color: #dc3545;
+    color: white;
+    cursor: default;
+  }
+  #next-btn {
+    display: none;
+    margin-top: var(--space-md);
+    background: var(--clr-primary);
+    color: white;
+    font-weight: 700;
+    padding: 12px 32px;
+    border-radius: 16px;
+    font-size: 1.1rem;
+    user-select: none;
+  }
+  #next-btn:hover,
+  #next-btn:focus {
+    background: var(--clr-accent);
+    outline: none;
+  }
+
+  /* MEMORY GAME */
+  #memory-game {
+    max-width: 720px;
+    margin: 0 auto;
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: 0 8px 30px rgb(32 201 151 / 0.15);
+    padding: var(--space-lg);
+    user-select: none;
+  }
+  #memory-game h2 {
+    color: var(--clr-secondary);
+    margin-bottom: var(--space-md);
+    font-weight: 700;
+    text-align: center;
+  }
+  .game-stats {
+    font-size: 1rem;
+    margin-bottom: var(--space-md);
+    text-align: center;
+    color: var(--clr-primary);
+  }
+  .game-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(90px,1fr));
+    gap: 16px;
+  }
+  .card {
+    background-color: var(--clr-primary);
+    border-radius: 12px;
+    height: 110px;
+    position: relative;
     cursor: pointer;
-    outline-offset: 3px;
-    border-radius: 14px;
+    perspective: 600px;
   }
-  .memory-card:focus {
-    outline: 3px solid #448aff;
-  }
-  .memory-inner {
+  .card-inner {
     position: relative;
     width: 100%;
     height: 100%;
-    border-radius: 14px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-    transition: transform 0.6s cubic-bezier(0.4,0,0.2,1);
+    text-align: center;
+    transition: transform 0.6s;
     transform-style: preserve-3d;
+    border-radius: 12px;
   }
-  .memory-inner.flipped {
+  .card.flipped .card-inner {
     transform: rotateY(180deg);
   }
-  .memory-front, .memory-back {
+  .card-front,
+  .card-back {
     position: absolute;
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
-    border-radius: 14px;
-    user-select: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 600;
-    padding: 14px;
-  }
-  .memory-front {
-    background: #448aff;
-    color: #fff;
-    font-size: 1.1rem;
-    text-align: center;
-  }
-  .memory-back {
-    background: #eceff1;
-    color: #263238;
-    font-size: 0.9rem;
-    line-height: 1.3;
-    text-align: center;
-    transform: rotateY(180deg);
-  }
-  .memory-status {
-    margin-top: 16px;
-    font-weight: 600;
-    font-size: 1.1rem;
-    text-align: center;
-    color: #82b1ff;
-  }
-  .memory-restart {
-    margin: 24px auto 0;
-    display: block;
-    background: #448aff;
-    border-radius: 30px;
-    padding: 12px 28px;
-    font-weight: 700;
-    box-shadow: 0 5px 15px rgba(66, 133, 244, 0.75);
-    letter-spacing: 0.02em;
-    user-select: none;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-  }
-  .memory-restart:hover,
-  .memory-restart:focus {
-    outline: none;
-    transform: scale(1.06);
-    box-shadow: 0 7px 22px rgba(66, 133, 244, 1);
-  }
-
-  /* SIMULATION Game */
-  .sim-question {
-    font-weight: 700;
-    font-size: 1.3rem;
-    margin-bottom: 20px;
-  }
-  .sim-options {
-    list-style: none;
-    padding: 0;
-    margin-bottom: 24px;
+    border-radius: 12px;
     display: flex;
     flex-direction: column;
-    gap: 14px;
-  }
-  .sim-options button {
-    background: #607d8b;
-    border: none;
-    border-radius: 12px;
-    padding: 14px 20px;
-    color: #ececec;
-    font-weight: 600;
-    font-size: 1rem;
-    cursor: pointer;
-    box-shadow: inset 0 0 8px #0007;
-    user-select: none;
-    transition: background-color 0.3s ease;
-  }
-  .sim-options button:hover,
-  .sim-options button:focus {
-    background: #90a4ae;
-    color: #263238;
-    outline: none;
-  }
-  .sim-options button:disabled {
-    background-color: #455a64;
-    cursor: not-allowed;
-    color: #9e9e9e;
-  }
-  .sim-explanation {
-    font-style: italic;
-    font-size: 1rem;
-    margin-top: 18px;
-    color: #82b1ff;
-    min-height: 58px;
-  }
-  .sim-nav-btn {
-    background: #448aff;
-    border-radius: 32px;
-    padding: 14px 38px;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    color: #fff;
-    border: none;
-    font-size: 1rem;
-    cursor: pointer;
-    box-shadow: 0 5px 15px rgba(66, 133, 244, 0.75);
-    transition: transform 0.3s ease;
-    user-select: none;
-    margin: 0 auto;
-    display: block;
-  }
-  .sim-nav-btn:disabled {
-    background: #455a64;
-    box-shadow: none;
-    cursor: not-allowed;
-  }
-  .sim-nav-btn:hover:not(:disabled),
-  .sim-nav-btn:focus:not(:disabled) {
-    outline: none;
-    transform: scale(1.05);
-    box-shadow: 0 7px 22px rgba(66, 133, 244, 1);
-  }
-
-  /* WORD SEARCH Game */
-  .wordsearch-container {
-    max-width: 600px;
-    margin: 0 auto;
-    text-align: center;
-    user-select: none;
-  }
-  .wordsearch-grid {
-    display: grid;
-    grid-template-columns: repeat(10, 1fr);
-    gap: 6px;
-    margin-top: 1rem;
-    cursor: pointer;
-  }
-  .ws-cell {
-    border: 1px solid #448aff;
-    padding: 14px 0;
-    font-weight: 700;
-    color: #bbdefb;
-    user-select: none;
-    border-radius: 10px;
-    font-size: 1.2rem;
-    line-height: 1;
-    transition: background-color 0.25s ease, color 0.25s ease;
-  }
-  .ws-cell:hover,
-  .ws-cell:focus {
-    background-color: #2962ff;
-    outline: none;
-    color: #ffffffcc;
-  }
-  .ws-cell.selected {
-    background-color: #2962ff;
-    color: #fff;
-  }
-  .ws-cell.found {
-    background-color: #43a047;
-    color: #fff;
-    cursor: default;
-  }
-  .word-list {
-    margin-top: 30px;
-    display: flex;
-    flex-wrap: wrap;
     justify-content: center;
-    gap: 18px;
+    align-items: center;
+    padding: 12px;
+    box-sizing: border-box;
   }
-  .word-list span {
-    background: #607d8b;
-    color: #ececec;
-    padding: 8px 20px;
-    border-radius: 30px;
-    font-weight: 600;
+  .card-front {
+    background: var(--clr-secondary);
+    color: var(--clr-text-light);
+    font-weight: 700;
     font-size: 1rem;
-    user-select: none;
-    transition: background-color 0.3s ease;
   }
-  .word-list span.found {
-    background-color: #43a047;
-    color: #eef4f7;
-    box-shadow: 0 0 15px #64dd17aa;
+  .card-back {
+    background: var(--clr-accent);
+    color: white;
+    transform: rotateY(180deg);
   }
-  .wordsearch-instructions {
-    font-style: italic;
-    font-size: 0.9rem;
-    margin-top: 10px;
-    color: #90a4ae;
+  .card img {
+    max-width: 48px;
+    max-height: 48px;
+    margin-bottom: 8px;
+  }
+  .card.matched {
+    cursor: default;
+    box-shadow: 0 0 12px 2px #198754;
+    opacity: 0.8;
+  }
+  .card.matched .card-inner {
+    cursor: default;
   }
 
   /* Responsive */
-  @media (max-width: 680px) {
-    nav ul {
-      gap: 16px;
+  @media (max-width: 768px) {
+    nav {
+      gap: var(--space-md);
     }
     main {
-      margin: 20px auto 48px;
-      padding: 0 16px;
+      padding: var(--space-md);
     }
-    section {
-      padding: 24px 28px;
+    .answers {
+      grid-template-columns: 1fr;
+    }
+    .card {
+      height: 100px;
     }
   }
-
 </style>
 </head>
 <body>
 <header>
-  <h1 tabindex="0">Curso Interativo de Racismo Ambiental</h1>
-  <p>Aprenda sobre o impacto do racismo ambiental e saiba como promover Justiça Ambiental!</p>
+  <a href="#" class="logo" aria-label="Página inicial curso de racismo ambiental">
+    <span class="material-icons" aria-hidden="true">eco</span>
+    Racismo Ambiental
+  </a>
+  <button class="hamburger" aria-label="Abrir menu" aria-expanded="false" aria-controls="primary-navigation">
+    <span></span><span></span><span></span>
+  </button>
+  <nav id="primary-navigation" role="navigation" aria-label="Menu principal">
+    <a href="#sobre" class="active" aria-current="page"><span class="material-icons" aria-hidden="true">info</span>Sobre</a>
+    <a href="#modulos"><span class="material-icons" aria-hidden="true">menu_book</span>Módulos</a>
+    <a href="#estudos"><span class="material-icons" aria-hidden="true">fact_check</span>Estudos de Caso</a>
+    <a href="#dados"><span class="material-icons" aria-hidden="true">analytics</span>Dados e Estatísticas</a>
+    <a href="#recursos"><span class="material-icons" aria-hidden="true">library_books</span>Recursos</a>
+    <a href="#quiz"><span class="material-icons" aria-hidden="true">quiz</span>Quiz</a>
+    <a href="#memory-game"><span class="material-icons" aria-hidden="true">memory</span>Jogo da Memória</a>
+    <a href="#contato"><span class="material-icons" aria-hidden="true">email</span>Contato</a>
+  </nav>
 </header>
-<nav aria-label="Menu principal">
-  <ul>
-    <li><a href="#introducao" aria-label="Ir para Introdução">Introdução <span class="material-icons" aria-hidden="true">info</span></a></li>
-    <li><a href="#impactos" aria-label="Ir para Impactos">Impactos <span class="material-icons" aria-hidden="true">warning</span></a></li>
-    <li><a href="#jogos" aria-label="Ir para Jogos interativos">Jogos <span class="material-icons" aria-hidden="true">videogame_asset</span></a></li>
-    <li><a href="#acoes" aria-label="Ir para Ações e Soluções">Ações <span class="material-icons" aria-hidden="true">lightbulb</span></a></li>
-    <li><a href="#conclusao" aria-label="Ir para Conclusão do curso">Conclusão <span class="material-icons" aria-hidden="true">flag</span></a></li>
-  </ul>
-</nav>
+
 <main>
-  <section id="introducao" tabindex="0" aria-label="Introdução ao Racismo Ambiental" class="section-content">
-    <h2>Introdução ao Racismo Ambiental</h2>
-    <p>
-      O racismo ambiental é a discriminação sistemática que resulta em comunidades racializadas sendo desproporcionalmente expostas a riscos ambientais prejudiciais.
-    </p>
-    <p>
-      Esta desigualdade está enraizada em legados históricos e estruturas sociais que segregam pessoas em bairros ou regiões que suportam o peso de poluição, falta de saneamento e degradação ambiental.
-    </p>
-    <p>
-      A comprovação científica dessas injustiças é essencial para política pública e ativismo. Respeitar e garantir direitos ambientais também é um compromisso social e humano.
-    </p>
-  </section>
-
-  <section id="impactos" tabindex="0" aria-label="Impactos do Racismo Ambiental" class="section-content">
-    <h2>Impactos do Racismo Ambiental</h2>
-    <p>Os impactos do racismo ambiental se manifestam profundamente na qualidade de vida e no acesso a oportunidades:</p>
+  <section id="sobre" tabindex="-1">
+    <h2>Sobre o Curso</h2>
+    <p>Este curso essencial apresenta os fundamentos do racismo ambiental e sua influência nas comunidades e no planeta.</p>
+    <p>Explore como desigualdades raciais afetam de maneira desproporcional o meio ambiente e a saúde, e aprenda como contribuir para mudanças reais.</p>
+    <p><strong>Objetivos:</strong></p>
     <ul>
-      <li><strong>Saúde comprometida:</strong> Maior incidência de doenças respiratórias, câncer e problemas crônicos em comunidades afetadas.</li>
-      <li><strong>Desigualdade social aumentada:</strong> Falta de acesso a educação, infraestrutura básica, serviços públicos e oportunidades econômicas.</li>
-      <li><strong>Perda cultural:</strong> Deslocamentos forçados e degradação ambiental levam à perda de saberes tradicionais de povos indígenas e comunidades locais.</li>
-      <li><strong>Ambiente degradado:</strong> Áreas afetadas têm solos contaminados, água poluída e menor biodiversidade, agravando a sustentabilidade futura.</li>
+      <li>Entender os conceitos e a história do racismo ambiental.</li>
+      <li>Analisar casos reais e seus impactos.</li>
+      <li>Conhecer os impactos ambientais sobre a saúde de populações racializadas.</li>
+      <li>Identificar ações e soluções possíveis para justiça ambiental.</li>
+      <li>Capacitar-se para atuar na construção de um futuro equitativo e sustentável.</li>
     </ul>
-    <p>
-      É fundamental que informações detalhadas, políticas públicas e mobilizações sociais abordem essas desigualdades enfrentadas por grupos vulneráveis.
-    </p>
   </section>
 
-  <section id="jogos" tabindex="0" aria-label="Jogos Interativos sobre Racismo Ambiental" class="section-content">
-    <h2>Jogos Interativos</h2>
-    <p>Explore cada jogo para testar seu conhecimento e entender melhor as complexidades do racismo ambiental.</p>
-    <div class="games-nav" role="tablist" aria-label="Navegação dos jogos educativos">
-      <button role="tab" aria-selected="true" aria-controls="quizGame" id="btnQuiz" tabindex="0" class="material-icons">quiz</button>
-      <button role="tab" aria-selected="false" aria-controls="memoryGame" id="btnMemory" tabindex="-1" class="material-icons">memory</button>
-      <button role="tab" aria-selected="false" aria-controls="simulationGame" id="btnSimulation" tabindex="-1" class="material-icons">sports_esports</button>
-      <button role="tab" aria-selected="false" aria-controls="wordSearchGame" id="btnWordSearch" tabindex="-1" class="material-icons">find_in_page</button>
-    </div>
-
-    <div id="gamesArea">
-      <!-- QUIZ -->
-      <section id="quizGame" class="game-container" role="tabpanel" tabindex="0" aria-labelledby="btnQuiz" aria-hidden="false">
-        <h3>Quiz sobre Racismo Ambiental</h3>
-        <p class="quiz-question" id="quizQuestion"></p>
-        <ul class="quiz-options" id="quizOptions" role="listbox" aria-activedescendant="" tabindex="0" aria-label="Opções de resposta"></ul>
-        <p id="quizFeedback" aria-live="assertive" class="quiz-result"></p>
-        <div class="quiz-nav-btns">
-          <button id="quizPrevBtn" aria-label="Pergunta Anterior" disabled>Anterior</button>
-          <button id="quizNextBtn" aria-label="Próxima Pergunta">Próxima</button>
-        </div>
-      </section>
-
-      <!-- MEMORY -->
-      <section id="memoryGame" class="game-container hidden" role="tabpanel" tabindex="0" aria-labelledby="btnMemory" aria-hidden="true">
-        <h3>Jogo de Memória: Combine os Fatos</h3>
-        <div class="memory-grid" id="memoryGrid" role="grid" aria-label="Grades de cartas de memória"></div>
-        <p id="memoryStatus" class="memory-status" aria-live="assertive" aria-atomic="true"></p>
-        <button id="memoryRestartBtn" class="memory-restart" aria-label="Reiniciar o jogo de memória">Reiniciar Jogo</button>
-      </section>
-
-      <!-- SIMULATION -->
-      <section id="simulationGame" class="game-container hidden" role="tabpanel" tabindex="0" aria-labelledby="btnSimulation" aria-hidden="true">
-        <h3>Simulação de Decisões Ambientais</h3>
-        <p class="sim-question" id="simQuestion"></p>
-        <ul class="sim-options" id="simOptions" role="listbox" aria-label="Opções de decisão"></ul>
-        <p class="sim-explanation" id="simExplanation" aria-live="polite" aria-atomic="true"></p>
-        <button id="simulationNext" class="sim-nav-btn" disabled aria-label="Próxima decisão">Próxima</button>
-        <button id="simulationRestart" class="sim-nav-btn" style="margin-top:10px; background-color:#689f38;" aria-label="Reiniciar simulação">Reiniciar</button>
-      </section>
-
-      <!-- WORD SEARCH -->
-      <section id="wordSearchGame" class="game-container hidden" role="tabpanel" tabindex="0" aria-labelledby="btnWordSearch" aria-hidden="true">
-        <h3>Caça-Palavras sobre Racismo Ambiental</h3>
-        <div class="wordsearch-container">
-          <div id="wordsearchGrid" class="wordsearch-grid" role="grid" aria-label="Grid do caça-palavras"></div>
-          <p class="wordsearch-instructions">Selecione letras adjacentes para formar palavras relacionadas.</p>
-          <div id="wordList" class="word-list" aria-label="Lista de palavras para encontrar"></div>
-        </div>
-      </section>
+  <section id="modulos" tabindex="-1">
+    <h2>Módulos do Curso</h2>
+    <div class="modules-list">
+      <article class="module-card" tabindex="0" role="group" aria-label="Módulo 1: Introdução ao Racismo Ambiental">
+        <h3>Módulo 1:</h3>
+        <p>Introdução ao Racismo Ambiental - Conceitos e contexto histórico.</p>
+        <p>Abordaremos definições fundamentais, relação entre raça e meio ambiente, e contexto histórico global e brasileiro.</p>
+      </article>
+      <article class="module-card" tabindex="0" role="group" aria-label="Módulo 2: Casos Históricos">
+        <h3>Módulo 2:</h3>
+        <p>Casos Históricos - Exemplos de racismo ambiental no Brasil e no mundo.</p>
+        <p>Estudo aprofundado de eventos emblemáticos, trazendo lições e aprendizagem para confrontar o presente.</p>
+      </article>
+      <article class="module-card" tabindex="0" role="group" aria-label="Módulo 3: Impactos na Saúde">
+        <h3>Módulo 3:</h3>
+        <p>Impactos na Saúde - Consequências para comunidades marginalizadas.</p>
+        <p>Exploração dos efeitos da poluição, degradação ambiental e falta de acesso a recursos naturais na saúde pública.</p>
+      </article>
+      <article class="module-card" tabindex="0" role="group" aria-label="Módulo 4: Ações e Soluções">
+        <h3>Módulo 4:</h3>
+        <p>Ações e Soluções - Caminhos para justiça ambiental e equidade social.</p>
+        <p>Conheça movimentos sociais, políticas públicas e estratégias ambientais que promovem justiça e sustentabilidade.</p>
+      </article>
     </div>
   </section>
 
-  <section id="acoes" tabindex="0" aria-label="Ações e soluções para combater o Racismo Ambiental" class="section-content">
-    <h2>Ações e Soluções</h2>
-    <p>Combater o racismo ambiental envolve diversas frentes:</p>
+  <section id="estudos" tabindex="-1">
+    <h2>Estudos de Caso</h2>
+    <p>Reunimos estudos que destacam como o racismo ambiental se manifesta em diferentes contextos:</p>
     <ul>
-      <li><strong>Políticas Inclusivas e Justas:</strong> elaborar leis que protejam as comunidades vulneráveis ambientalmente afetadas.</li>
-      <li><strong>Educação Integral:</strong> incentivar conhecimento crítico e participação das comunidades.</li>
-      <li><strong>Mobilização Social:</strong> movimentos populares que pressionam por mudanças e visibilidade para os afetados.</li>
-      <li><strong>Infraestrutura e Saúde:</strong> investimento em saneamento, água limpa e serviços para as comunidades.</li>
-      <li><strong>Participação Comunitária:</strong> garantir a voz das comunidades na tomada de decisões ambientais.</li>
+      <li><strong>Flint, EUA:</strong> Contaminação da água por chumbo afetando principalmente comunidades negras.</li>
+      <li><strong>Quilombolas no Brasil:</strong> Conflitos territoriais relacionados à proteção ambiental e direitos ancestrais.</li>
+      <li><strong>Comunidades indígenas:</strong> Impactos do desmatamento e exploração de recursos em terras indígenas.</li>
+      <li><strong>Descarte inadequado de resíduos tóxicos:</strong> Implantação perto de bairros pobres e racializados.</li>
     </ul>
-    <p>Exemplos inspiradores de ativismo e ações bem-sucedidas são fonte de esperança e aprendizagem para avançarmos juntos.</p>
-    <p>Conheça mais: <a href="https://www.amentebemdia.com.br/tag/justica-ambiental/" target="_blank" rel="noopener noreferrer">Justiça Ambiental</a>, <a href="https://uneafro.org.br/" target="_blank" rel="noopener noreferrer">Uneafro Brasil</a></p>
+    <p>Estes estudos reforçam a necessidade urgente de políticas ambientais inclusivas e antirracistas.</p>
   </section>
 
-  <section id="conclusao" tabindex="0" aria-label="Conclusão do curso de racismo ambiental" class="section-content">
-    <h2>Conclusão</h2>
-    <p>O racismo ambiental é injustiça que requer conscientização e ação.</p>
-    <p>Este curso trouxe entendimento sobre causas, impactos e soluções, junto de ferramentas lúdicas para aprender interativamente.</p>
-    <p>Com conhecimento e atitude, você pode fazer a diferença. A justiça ambiental é responsabilidade de todos nós.</p>
-    <p>Agradecemos seu interesse e participação!</p>
+  <section id="dados" tabindex="-1">
+    <h2>Dados e Estatísticas</h2>
+    <p>Estes números ajudam a compreender a dimensão do problema:</p>
+    <ul>
+      <li>Comunidades negras e indígenas no Brasil têm 3 vezes mais probabilidade de viver próximas a áreas contaminadas.</li>
+      <li>Em áreas com maior poluição, populações racializadas apresentam até 50% mais doenças respiratórias.</li>
+      <li>Pesquisas indicam que políticas ambientais ineficazes geram desigualdades socioambientais que perpetuam o racismo.</li>
+      <li>Investimentos em justiça ambiental e proteção comunitária diminuem a vulnerabilidade dessas populações.</li>
+    </ul>
+    <p>Visite fontes confiáveis para manter os dados atualizados e aprofundar seus conhecimentos.</p>
+  </section>
+
+  <section id="recursos" tabindex="-1">
+    <h2>Recursos de Aprendizagem</h2>
+    <ul>
+      <li><a href="https://www.oxfam.org.br/publicacoes/racismo-ambiental/" target="_blank" rel="noopener noreferrer">Relatório da Oxfam Brasil sobre Racismo Ambiental</a></li>
+      <li><a href="https://www.amazon.com.br/s?k=racismo+ambiental" target="_blank" rel="noopener noreferrer">Livros e artigos acadêmicos sobre racismo ambiental</a></li>
+      <li><a href="https://www.youtube.com/watch?v=RmMwuyzNeyQ" target="_blank" rel="noopener noreferrer">Documentário: Racismo Ambiental – Poluição e desigualdade</a></li>
+      <li><a href="https://www.youtube.com/playlist?list=PLzq3skQOJ4T3ie9HUFc8dYslrBiDqP2pk" target="_blank" rel="noopener noreferrer">Playlist Educativa no YouTube</a></li>
+      <li><a href="https://twitter.com/hashtag/racismoambiental" target="_blank" rel="noopener noreferrer">Tags nas redes sociais para debates atuais (#RacismoAmbiental)</a></li>
+    </ul>
+  </section>
+
+  <section id="quiz" tabindex="-1" aria-label="Seção de quiz interativo sobre racismo ambiental">
+    <h2>Quiz Interativo</h2>
+    <div id="quiz-container" role="application" aria-live="polite" aria-atomic="true">
+      <div id="question" class="question"></div>
+      <ul id="answers" class="answers" role="list"></ul>
+      <button id="next-btn" aria-label="Próxima pergunta">Próxima</button>
+    </div>
+  </section>
+
+  <section id="memory-game" tabindex="-1" aria-label="Jogo da Memória sobre Racismo Ambiental">
+    <h2>Jogo da Memória</h2>
+    <p class="game-stats" aria-live="polite" aria-atomic="true" id="game-stats">Tentativas: 0 | Pares encontrados: 0 / 6</p>
+    <div class="game-grid" id="game-grid" role="grid" aria-describedby="game-stats"></div>
+    <button id="restart-btn" aria-label="Reiniciar Jogo da Memória" style="margin-top: 16px; font-weight: 700; padding: 10px 20px; cursor: pointer; background-color: var(--clr-accent); color: white; border: none; border-radius: 12px;">Reiniciar</button>
+  </section>
+
+  <section id="contato" tabindex="-1">
+    <h2>Contato</h2>
+    <form id="contatoForm" aria-label="Formulário de contato">
+      <label for="nome">Nome</label>
+      <input type="text" id="nome" name="nome" required aria-required="true" />
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required aria-required="true" />
+      <button type="submit">Enviar</button>
+    </form>
   </section>
 </main>
+
 <footer>
-  <p>IEMA TAMANCÃO - 2025</p>
+  <p>© 2023 Curso de Racismo Ambiental. Todos os direitos reservados.</p>
 </footer>
 
 <script>
-  // ------- UTILITIES -------
-  function toggleVisibility(element, show) {
-    if(show) {
-      element.classList.remove('hidden');
-      element.setAttribute('aria-hidden', 'false');
-    } else {
-      element.classList.add('hidden');
-      element.setAttribute('aria-hidden', 'true');
-    }
-  }
-  function setTabSelected(buttons, selectedIndex) {
-    buttons.forEach((btn,i) => {
-      if(i === selectedIndex){
-        btn.setAttribute('aria-selected', 'true');
-        btn.tabIndex = 0;
-        btn.focus();
-      } else {
-        btn.setAttribute('aria-selected', 'false');
-        btn.tabIndex = -1;
-      }
-    });
-  }
-  // ------- GAMES NAVIGATION -------
-  const btnQuiz = document.getElementById('btnQuiz');
-  const btnMemory = document.getElementById('btnMemory');
-  const btnSimulation = document.getElementById('btnSimulation');
-  const btnWordSearch = document.getElementById('btnWordSearch');
-  const gamesTabs = [btnQuiz, btnMemory, btnSimulation, btnWordSearch];
-
-  const quizGame = document.getElementById('quizGame');
-  const memoryGame = document.getElementById('memoryGame');
-  const simulationGame = document.getElementById('simulationGame');
-  const wordSearchGame = document.getElementById('wordSearchGame');
-
-  const gamesPanels = [quizGame, memoryGame, simulationGame, wordSearchGame];
-
-  function activateGame(index) {
-    gamesPanels.forEach((game,i) => {
-      toggleVisibility(game, i === index);
-      game.setAttribute('aria-hidden', i !== index);
-      game.setAttribute('tabindex', i === index ? '0' : '-1');
-    });
-    setTabSelected(gamesTabs, index);
-  }
-
-  btnQuiz.addEventListener('click', () => {
-    activateGame(0);
-    startQuiz();
-  });
-  btnMemory.addEventListener('click', () => {
-    activateGame(1);
-    startMemoryGame();
-  });
-  btnSimulation.addEventListener('click', () => {
-    activateGame(2);
-    startSimulation();
-  });
-  btnWordSearch.addEventListener('click', () => {
-    activateGame(3);
-    startWordSearch();
+  // Hamburger menu toggle
+  const hamburger = document.querySelector('.hamburger');
+  const nav = document.getElementById('primary-navigation');
+  hamburger.addEventListener('click', () => {
+    const expanded = hamburger.getAttribute('aria-expanded') === 'true';
+    hamburger.setAttribute('aria-expanded', !expanded);
+    nav.classList.toggle('show');
   });
 
-  // Keyboard support for game tabs
-  gamesTabs.forEach((btn, i) => {
-    btn.addEventListener('keydown', e => {
-      if(e.key === 'ArrowRight') {
-        e.preventDefault();
-        let next = (i + 1) % gamesTabs.length;
-        gamesTabs[next].focus();
-      } else if(e.key === 'ArrowLeft') {
-        e.preventDefault();
-        let prev = (i - 1 + gamesTabs.length) % gamesTabs.length;
-        gamesTabs[prev].focus();
-      } else if(e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        btn.click();
-      }
-    });
-  });
+  // Navigation active link update on scroll
+  const sections = document.querySelectorAll('main section');
+  const navLinks = nav.querySelectorAll('a');
 
-  // Initialize to quiz active
-  activateGame(0);
-
-  // -------------- QUIZ GAME --------------
-  const quizData = [
-    {
-      question: "O que é racismo ambiental?",
-      options: [
-        "Processo em que comunidades marginalizadas são desproporcionalmente afetadas por problemas ambientais",
-        "Uma teoria ambiental que defende a igualdade ecológica",
-        "Políticas públicas que cuidam do meio ambiente",
-        "Um tipo de poluição sonora"
-      ],
-      correctIndex: 0,
-    },
-    {
-      question: "Quais comunidades sofrem mais com o racismo ambiental?",
-      options: [
-        "Comunidades indígenas e periféricas",
-        "Grandes capitais urbanas",
-        "Áreas rurais isoladas sem população",
-        "Todos são igualmente impactados"
-      ],
-      correctIndex: 0,
-    },
-    {
-      question: "Qual é um dos principais impactos do racismo ambiental?",
-      options: [
-        "Desigualdade na saúde pública",
-        "Crescimento econômico acelerado",
-        "Avanço da indústria tecnológica",
-        "Aumento de espécies preservadas"
-      ],
-      correctIndex: 0,
-    },
-    {
-      question: "Como podemos combater o racismo ambiental?",
-      options: [
-        "Criação e aplicação de políticas inclusivas e ativismo social",
-        "Ignorando o problema para não causar conflitos",
-        "Construindo mais indústrias em áreas protegidas",
-        "Reduzindo a educação ambiental"
-      ],
-      correctIndex: 0,
-    }
-  ];
-
-  const quizQuestion = document.getElementById('quizQuestion');
-  const quizOptions = document.getElementById('quizOptions');
-  const quizFeedback = document.getElementById('quizFeedback');
-  const quizPrevBtn = document.getElementById('quizPrevBtn');
-  const quizNextBtn = document.getElementById('quizNextBtn');
-
-  let currentQuizIndex = 0;
-  let quizScore = 0;
-  let quizAnswered = false;
-
-  function renderQuiz() {
-    const q = quizData[currentQuizIndex];
-    quizQuestion.textContent = `Q${currentQuizIndex + 1}: ${q.question}`;
-    quizOptions.innerHTML = '';
-    quizFeedback.textContent = '';
-    quizAnswered = false;
-    quizPrevBtn.disabled = currentQuizIndex === 0;
-    quizNextBtn.disabled = true;
-
-    q.options.forEach((opt, i) => {
-      const li = document.createElement('li');
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.textContent = opt;
-      btn.classList.add('quiz-option');
-      btn.setAttribute('aria-pressed', 'false');
-      btn.addEventListener('click', () => {
-        if(quizAnswered) return;
-        quizAnswered = true;
-        const correctIdx = q.correctIndex;
-
-        if(i === correctIdx){
-          btn.classList.add('correct');
-          quizFeedback.textContent = 'Resposta correta!';
-          quizScore++;
-        } else {
-          btn.classList.add('wrong');
-          quizFeedback.textContent = `Resposta incorreta! A correta é: "${q.options[correctIdx]}"`;
-        }
-
-        [...quizOptions.children].forEach(liChild => {
-          let btnChild = liChild.querySelector('button');
-          btnChild.disabled = true;
-          btnChild.setAttribute('aria-pressed', btnChild === btn ? 'true' : 'false');
-          if((quizOptions.children[i] !== liChild) && btnChild.textContent === q.options[correctIdx]){
-            btnChild.classList.add('correct');
+  function onScroll() {
+    const scrollPosition = window.scrollY + 80; // offset header
+    sections.forEach(section => {
+      if (scrollPosition >= section.offsetTop && scrollPosition < section.offsetTop + section.offsetHeight) {
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href').substring(1) === section.id) {
+            link.classList.add('active');
+            link.setAttribute('aria-current', 'page');
+          } else {
+            link.removeAttribute('aria-current');
           }
         });
-
-        quizNextBtn.disabled = false;
-        quizNextBtn.focus();
-      });
-      li.appendChild(btn);
-      quizOptions.appendChild(li);
+      }
     });
   }
+  window.addEventListener('scroll', onScroll);
 
-  quizPrevBtn.addEventListener('click', () => {
-    if(currentQuizIndex > 0){
-      currentQuizIndex--;
-      renderQuiz();
-    }
+  // Contact form submission
+  const contatoForm = document.getElementById('contatoForm');
+  contatoForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const nome = document.getElementById('nome').value.trim();
+    alert(`Obrigado por entrar em contato, ${nome}! Responderemos em breve.`);
+    contatoForm.reset();
   });
 
-  quizNextBtn.addEventListener('click', () => {
-    if(currentQuizIndex < quizData.length -1){
-      currentQuizIndex++;
-      renderQuiz();
-    } else {
-      quizQuestion.textContent = `Quiz completo! Sua pontuação: ${quizScore} de ${quizData.length}`;
-      quizOptions.innerHTML = '';
-      quizFeedback.textContent = '';
-      quizPrevBtn.disabled = true;
-      quizNextBtn.disabled = true;
-    }
-  });
-
-  function startQuiz() {
-    currentQuizIndex = 0;
-    quizScore = 0;
-    renderQuiz();
-  }
-
-  // ---------- MEMORY GAME ----------
-  const memoryGrid = document.getElementById('memoryGrid');
-  const memoryStatus = document.getElementById('memoryStatus');
-  const memoryRestartBtn = document.getElementById('memoryRestartBtn');
-
-  const memoryPairs = [
-    {id: 1, front: "Comunidades indígenas", back: "São afetadas pelo racismo ambiental"},
-    {id: 2, front: "Poluição", back: "Afeta desproporcionalmente áreas pobres"},
-    {id: 3, front: "Doenças respiratórias", back: "Consequência da má qualidade ambiental"},
-    {id: 4, front: "Ativismo", back: "Ferramenta essencial para a justiça ambiental"},
-    {id: 5, front: "Justiça Ambiental", back: "O objetivo de combater o racismo ambiental"},
-    {id: 6, front: "Desigualdade Social", back: "Amplificada pelo racismo ambiental"},
+  // Quiz implementation
+  const quizData = [
+    {
+      question: 'O que é racismo ambiental?',
+      answers: [
+        {text: 'Distribuição desigual dos impactos ambientais baseada em raça', correct: true},
+        {text: 'Poluição causada por indústrias', correct: false},
+        {text: 'Apenas poluição em áreas urbanas', correct: false},
+        {text: 'Conservação ambiental exclusiva para minorias', correct: false},
+      ]
+    },
+    {
+      question: 'Qual grupo geralmente sofre mais com os efeitos do racismo ambiental?',
+      answers: [
+        {text: 'Comunidades marginalizadas e racialmente discriminadas', correct: true},
+        {text: 'Grandes corporações', correct: false},
+        {text: 'Áreas metropolitanas centrais', correct: false},
+        {text: 'Governo federal', correct: false},
+      ]
+    },
+    {
+      question: 'Qual ação ajuda a combater o racismo ambiental?',
+      answers: [
+        {text: 'Garantir justiça ambiental e equidade social', correct: true},
+        {text: 'Ignorar políticas ambientais', correct: false},
+        {text: 'Proteger apenas áreas urbanas ricas', correct: false},
+        {text: 'Desenvolver indústrias poluentes', correct: false},
+      ]
+    },
+    {
+      question: 'O que o conceito de justiça ambiental busca?',
+      answers: [
+        {text: 'Distribuir benefícios e riscos ambientais de forma justa', correct: true},
+        {text: 'Garantir lucro para empresas ambientais', correct: false},
+        {text: 'Aumentar a poluição em determinadas áreas', correct: false},
+        {text: 'Exclusão de comunidades vulneráveis', correct: false},
+      ]
+    },
+    {
+      question: 'Por que o racismo ambiental é considerado um problema social e ambiental?',
+      answers: [
+        {text: 'Porque afeta a saúde e o bem-estar de grupos discriminados', correct: true},
+        {text: 'Porque não existe relação entre racismo e meio ambiente', correct: false},
+        {text: 'Porque só prejudica áreas de floresta', correct: false},
+        {text: 'Porque é um problema local, sem impacto global', correct: false},
+      ]
+    },
   ];
 
-  let memoryCards = [];
-  let memoryFlipped = [];
-  let memoryMatches = 0;
-  let memoryLock = false;
+  const questionEl = document.getElementById('question');
+  const answersEl = document.getElementById('answers');
+  const nextBtn = document.getElementById('next-btn');
 
-  function shuffleArray(arr) {
-    for(let i = arr.length -1; i>0; i--){
-      let j = Math.floor(Math.random() * (i+1));
-      [arr[i], arr[j]] = [arr[j], arr[i]];
-    }
-    return arr;
+  let currentQuestionIndex = 0;
+  let score = 0;
+
+  function startQuiz(){
+    currentQuestionIndex = 0;
+    score = 0;
+    nextBtn.innerText = 'Próxima';
+    showQuestion();
   }
 
-  function createMemoryCard(pair) {
-    const card = document.createElement('div');
-    card.className = 'memory-card';
-    card.setAttribute('tabindex', '0');
-    card.setAttribute('role', 'button');
-    card.setAttribute('aria-pressed', 'false');
-    card.dataset.id = pair.id;
-
-    const inner = document.createElement('div');
-    inner.className = 'memory-inner';
-
-    const front = document.createElement('div');
-    front.className = 'memory-front';
-    front.textContent = pair.front;
-
-    const back = document.createElement('div');
-    back.className = 'memory-back';
-    back.textContent = pair.back;
-
-    inner.appendChild(front);
-    inner.appendChild(back);
-    card.appendChild(inner);
-
-    // Flip logic
-    card.addEventListener('click', () => flipMemoryCard(card));
-    card.addEventListener('keydown', e => {
-      if(e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        flipMemoryCard(card);
-      }
+  function showQuestion(){
+    resetState();
+    const currentQ = quizData[currentQuestionIndex];
+    questionEl.textContent = currentQ.question;
+    currentQ.answers.forEach(answer => {
+      const button = document.createElement('button');
+      button.innerText = answer.text;
+      button.classList.add('answer-btn');
+      button.setAttribute('type', 'button');
+      button.addEventListener('click', () => selectAnswer(button, answer.correct));
+      answersEl.appendChild(button);
     });
-    return card;
   }
 
-  function flipMemoryCard(card){
-    if(memoryLock) return;
-    if(memoryFlipped.includes(card) || card.classList.contains('matched')) return;
-
-    card.classList.add('flipped');
-    card.setAttribute('aria-pressed', 'true');
-    memoryFlipped.push(card);
-
-    if(memoryFlipped.length === 2){
-      memoryLock = true;
-      setTimeout(checkMemoryMatch, 1000);
+  function resetState(){
+    nextBtn.style.display = 'none';
+    while(answersEl.firstChild){
+      answersEl.removeChild(answersEl.firstChild);
     }
   }
 
-  function checkMemoryMatch(){
-    const [card1, card2] = memoryFlipped;
-    if(card1.dataset.id === card2.dataset.id){
-      card1.classList.add('matched');
-      card2.classList.add('matched');
-      memoryMatches++;
-      memoryStatus.textContent = `Paare encontrados: ${memoryMatches} de ${memoryPairs.length}`;
-      if(memoryMatches === memoryPairs.length){
-        memoryStatus.textContent = "Parabéns! Você completou o jogo de memória!";
-      }
+  function selectAnswer(button, correct){
+    if(correct){
+      button.classList.add('correct');
+      score++;
     } else {
-      card1.classList.remove('flipped');
-      card2.classList.remove('flipped');
-      card1.setAttribute('aria-pressed', 'false');
-      card2.setAttribute('aria-pressed', 'false');
+      button.classList.add('incorrect');
     }
-    memoryFlipped = [];
-    memoryLock = false;
-  }
-
-  function startMemoryGame() {
-    memoryMatches = 0;
-    memoryFlipped = [];
-    memoryLock = false;
-    memoryStatus.textContent = 'Encontre todos os pares.';
-    // Duplicate and shuffle cards
-    memoryCards = memoryPairs.concat(memoryPairs);
-    shuffleArray(memoryCards);
-    memoryGrid.innerHTML = '';
-    memoryCards.forEach(pair => {
-      let card = createMemoryCard(pair);
-      memoryGrid.appendChild(card);
+    Array.from(answersEl.children).forEach(btn => {
+      btn.disabled = true;
+      if(btn !== button){
+        const answerText = btn.innerText;
+        const isCorrect = quizData[currentQuestionIndex].answers.find(a => a.text === answerText)?.correct;
+        if(isCorrect) btn.classList.add('correct');
+      }
     });
-    memoryGrid.querySelector('.memory-card').focus();
+    nextBtn.style.display = 'inline-block';
+    nextBtn.focus();
   }
 
-  memoryRestartBtn.addEventListener('click', () => {
-    startMemoryGame();
+  nextBtn.addEventListener('click', () => {
+    currentQuestionIndex++;
+    if(currentQuestionIndex < quizData.length){
+      showQuestion();
+    } else {
+      showScore();
+    }
   });
 
-  // ----------- SIMULATION -----------
+  function showScore(){
+    resetState();
+    questionEl.textContent = `Você acertou ${score} de ${quizData.length} perguntas!`;
+    nextBtn.innerText = 'Refazer Quiz';
+    nextBtn.style.display = 'inline-block';
+    nextBtn.focus();
+    nextBtn.onclick = () => {
+      nextBtn.onclick = null;
+      nextBtn.innerText = 'Próxima';
+      startQuiz();
+    };
+  }
 
-  const simQuestion = document.getElementById('simQuestion');
-  const simOptions = document.getElementById('simOptions');
-  const simExplanation = document.getElementById('simExplanation');
-  const simulationNext = document.getElementById('simulationNext');
-  const simulationRestart = document.getElementById('simulationRestart');
+  document.addEventListener('DOMContentLoaded', startQuiz);
 
-  const simulationData = [
+  // Memory Game
+
+  const cardsData = [
     {
       id: 1,
-      question: 'Você é um prefeito. Uma indústria quer instalar uma fábrica próxima a uma comunidade pobre. O que você faz?',
-      options: [
-        {text: 'Autorizar para gerar empregos.', impact: -1},
-        {text: 'Consultar a comunidade antes de decidir.', impact: 1},
-        {text: 'Proibir para proteger o meio ambiente.', impact: 2}
-      ],
-      explanation: 'Consultar a comunidade ajuda a preservar seus direitos e decidir com responsabilidade, equilibrando riscos e benefícios.'
+      name: 'Igualdade Ambiental',
+      img: 'https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/9c5fbe1f-e6b0-4c49-925c-d03ac85ebd6a.png',
+      alt: 'Ícone representando igualdade ambiental com duas mãos dadas'
     },
     {
       id: 2,
-      question: 'Há contaminação na água da cidade. Como agir?',
-      options: [
-        {text: 'Investir em saneamento para a área afetada.', impact: 2},
-        {text: 'Ignorar e esperar solução natural.', impact: -1},
-        {text: 'Forçar remoção da comunidade da área.', impact: -2}
-      ],
-      explanation: 'Investir em saneamento combate a raiz da contaminação e protege a saúde da população.'
+      name: 'Justiça Social',
+      img: 'https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/c13731bf-4b4e-40ba-af7f-793792ecb9ab.png',
+      alt: 'Ícone representando justiça social com balança'
     },
     {
       id: 3,
-      question: 'Como envolver a comunidade nas decisões ambientais?',
-      options: [
-        {text: 'Realizar audiências públicas participativas.', impact: 2},
-        {text: 'Tomar decisões sozinho para agilidade.', impact: -1},
-        {text: 'Consultar apenas grandes empresários.', impact: -2}
-      ],
-      explanation: 'Audiências promovem inclusão e decisões mais justas para todos os afetados.'
+      name: 'Saúde Pública',
+      img: 'https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/74a17588-96af-46d9-b71a-b80a09825973.png',
+      alt: 'Ícone representando saúde pública com coração e cruz'
+    },
+    {
+      id: 4,
+      name: 'Poluição',
+      img: 'https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/7f29e52d-c250-4405-a0b7-ae38296dbfc6.png',
+      alt: 'Ícone representando poluição com fumaça de chaminé'
+    },
+    {
+      id: 5,
+      name: 'Comunidade',
+      img: 'https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/356c7302-3c0b-4e5f-aba1-f43777f68568.png',
+      alt: 'Ícone representando comunidade com grupo de pessoas'
+    },
+    {
+      id: 6,
+      name: 'Natureza',
+      img: 'https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/2d73e993-c9e8-4d3a-bc5a-cc00a4108791.png',
+      alt: 'Ícone representando natureza com árvore e sol'
     }
   ];
 
-  let currentSimIndex = 0;
-  let simScore = 0;
-  let simAnswered = false;
+  const gameGrid = document.getElementById('game-grid');
+  const gameStats = document.getElementById('game-stats');
+  const restartBtn = document.getElementById('restart-btn');
 
-  function renderSimulationStep() {
-    const step = simulationData[currentSimIndex];
+  let gameCards = [];
+  let flippedCards = [];
+  let matchedPairs = 0;
+  let attempts = 0;
+  let lockBoard = false;
 
-    simQuestion.textContent = step.question;
-    simOptions.innerHTML = '';
-    simExplanation.textContent = '';
-    simulationNext.disabled = true;
-    simAnswered = false;
+  function shuffle(array) {
+    return array.sort(() => Math.random() - 0.5);
+  }
 
-    step.options.forEach((opt, i) => {
-      const li = document.createElement('li');
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.textContent = opt.text;
-      btn.className = 'sim-option';
-      btn.setAttribute('aria-pressed', 'false');
-      btn.addEventListener('click', () => {
-        if(simAnswered) return;
-        simAnswered = true;
+  function createCardElement(card) {
+    const cardEl = document.createElement('div');
+    cardEl.classList.add('card');
+    cardEl.setAttribute('tabindex', '0');
+    cardEl.setAttribute('role', 'button');
+    cardEl.setAttribute('aria-label', `${card.name} - carta da memória`);
+    cardEl.dataset.id = card.id;
 
-        // Mark buttons disabled except clicked
-        [...simOptions.querySelectorAll('button')].forEach(b => {
-          b.disabled = true;
-          if(b === btn) {
-            b.classList.add('selected');
-            b.setAttribute('aria-pressed', 'true');
-          } else {
-            b.setAttribute('aria-pressed', 'false');
-          }
-        });
-        simScore += (opt.impact > 0) ? opt.impact : 0;
-        simExplanation.textContent = step.explanation;
+    const cardInner = document.createElement('div');
+    cardInner.classList.add('card-inner');
 
-        simulationNext.disabled = false;
-        simulationNext.focus();
-      });
-      li.appendChild(btn);
-      simOptions.appendChild(li);
+    const cardFront = document.createElement('div');
+    cardFront.classList.add('card-front');
+    cardFront.textContent = '?';
+    cardFront.setAttribute('aria-hidden', 'true');
+
+    const cardBack = document.createElement('div');
+    cardBack.classList.add('card-back');
+    const img = document.createElement('img');
+    img.src = card.img;
+    img.alt = card.alt;
+    img.width = 48;
+    img.height = 48;
+    cardBack.appendChild(img);
+    const caption = document.createElement('div');
+    caption.textContent = card.name;
+    caption.style.fontSize = '0.9rem';
+    caption.style.marginTop = '6px';
+    cardBack.appendChild(caption);
+    cardBack.setAttribute('aria-hidden', 'true');
+
+    cardInner.appendChild(cardFront);
+    cardInner.appendChild(cardBack);
+    cardEl.appendChild(cardInner);
+
+    cardEl.addEventListener('click', () => flipCard(cardEl));
+    cardEl.addEventListener('keydown', e => {
+      if(e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        flipCard(cardEl);
+      }
+    });
+
+    return cardEl;
+  }
+
+  function initGame() {
+    matchedPairs = 0;
+    attempts = 0;
+    flippedCards = [];
+    lockBoard = false;
+    gameStats.textContent = `Tentativas: ${attempts} | Pares encontrados: ${matchedPairs} / ${cardsData.length}`;
+    gameGrid.innerHTML = '';
+    // Duplicate and shuffle
+    gameCards = shuffle([...cardsData, ...cardsData]);
+    gameCards.forEach(card => {
+      const cardEl = createCardElement(card);
+      gameGrid.appendChild(cardEl);
     });
   }
 
-  simulationNext.addEventListener('click', () => {
-    if(currentSimIndex < simulationData.length -1){
-      currentSimIndex++;
-      renderSimulationStep();
+  function flipCard(cardEl) {
+    if(lockBoard) return;
+    if(flippedCards.length === 2) return;
+    if(cardEl.classList.contains('flipped') || cardEl.classList.contains('matched')) return;
+
+    cardEl.classList.add('flipped');
+    flippedCards.push(cardEl);
+
+    if(flippedCards.length === 2) {
+      lockBoard = true;
+      attempts++;
+      checkMatch();
+    }
+  }
+
+  function checkMatch() {
+    const [first, second] = flippedCards;
+    const isMatch = first.dataset.id === second.dataset.id;
+
+    if(isMatch) {
+      first.classList.add('matched');
+      second.classList.add('matched');
+      matchedPairs++;
+      updateStats();
+      resetFlip();
+      if(matchedPairs === cardsData.length){
+        setTimeout(() => alert(`Parabéns! Você encontrou todos os pares em ${attempts} tentativas.`), 300);
+      }
     } else {
-      simQuestion.textContent = `Fim da simulação! Sua pontuação: ${simScore} pontos.`;
-      simOptions.innerHTML = '';
-      simExplanation.textContent = '';
-      simulationNext.disabled = true;
-      simulationRestart.style.display = 'block';
-      simulationRestart.focus();
+      // Wait a bit then unflip
+      setTimeout(() => {
+        first.classList.remove('flipped');
+        second.classList.remove('flipped');
+        resetFlip();
+        updateStats();
+      }, 1000);
     }
+  }
+
+  function resetFlip() {
+    flippedCards = [];
+    lockBoard = false;
+  }
+
+  function updateStats(){
+    gameStats.textContent = `Tentativas: ${attempts} | Pares encontrados: ${matchedPairs} / ${cardsData.length}`;
+  }
+
+  restartBtn.addEventListener('click', initGame);
+
+  document.addEventListener('DOMContentLoaded', () => {
+    initGame();
   });
-
-  simulationRestart.addEventListener('click', () => {
-    currentSimIndex = 0;
-    simScore = 0;
-    simulationRestart.style.display = 'none';
-    renderSimulationStep();
-    simulationNext.disabled = true;
-  });
-
-  function startSimulation() {
-    currentSimIndex = 0;
-    simScore = 0;
-    simulationRestart.style.display = 'none';
-    renderSimulationStep();
-    toggleVisibility(simulationGame, true);
-    setTimeout(() => {
-      const firstBtn = simOptions.querySelector('button');
-      if(firstBtn) firstBtn.focus();
-    }, 300);
-  }
-
-  // ----------- WORD SEARCH -----------
-
-  const wordSearchWords = [
-    'POLUIÇÃO',
-    'JUSTIÇA',
-    'SAÚDE',
-    'COMUNIDADE',
-    'MEIOAMBIENTE',
-    'ATIVISMO',
-    'IGUALDADE',
-    'RESILIÊNCIA',
-    'DIVERSIDADE',
-    'SUSTENTABILIDADE'
-  ];
-
-  const wordsearchGridDiv = document.getElementById('wordsearchGrid');
-  const wordListDiv = document.getElementById('wordList');
-  const gridSize = 10;
-
-  let wsGrid = [];
-  let wsSelectedCells = [];
-  let wsFoundWords = new Set();
-
-  function generateGrid(size) {
-    return Array(size).fill(null).map(() => Array(size).fill(''));
-  }
-
-  function placeWord(grid, word) {
-    const size = grid.length;
-    const len = word.length;
-    const directions = ['horizontal', 'vertical'];
-    for(let tries = 0; tries < 1000; tries++) {
-      const dir = directions[Math.floor(Math.random()*directions.length)];
-      if(dir === 'horizontal') {
-        const row = Math.floor(Math.random()*size);
-        const col = Math.floor(Math.random()*(size-len));
-        let canPlace = true;
-        for(let i=0; i<len; i++){
-          if(grid[row][col+i] !== '' && grid[row][col+i] !== word[i]){
-            canPlace = false;
-            break;
-          }
-        }
-        if(canPlace) {
-          for(let i=0; i<len; i++){
-            grid[row][col+i] = word[i];
-          }
-          return true;
-        }
-      } else {
-        // vertical
-        const col = Math.floor(Math.random()*size);
-        const row = Math.floor(Math.random()*(size-len));
-        let canPlace = true;
-        for(let i=0; i<len; i++){
-          if(grid[row+i][col] !== '' && grid[row+i][col] !== word[i]){
-            canPlace = false;
-            break;
-          }
-        }
-        if(canPlace){
-          for(let i=0; i<len; i++){
-            grid[row+i][col] = word[i];
-          }
-          return true;
-        }
-      }
-    }
-    return false;
-  }
-
-  function fillGridRandom(grid) {
-    const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    for(let r=0; r<grid.length; r++){
-      for(let c=0; c<grid[r].length; c++){
-        if(grid[r][c]===''){
-          grid[r][c] = letters.charAt(Math.floor(Math.random()*letters.length));
-        }
-      }
-    }
-  }
-
-  function renderGrid() {
-    wordsearchGridDiv.innerHTML = '';
-    for(let r=0; r<wsGrid.length; r++) {
-      for(let c=0; c<wsGrid[r].length; c++) {
-        const cell = document.createElement('div');
-        cell.className = 'ws-cell';
-        cell.textContent = wsGrid[r][c];
-        cell.dataset.row = r;
-        cell.dataset.col = c;
-        cell.setAttribute('tabindex', '0');
-        cell.setAttribute('role', 'button');
-        cell.setAttribute('aria-label', `Letra ${wsGrid[r][c]}, linha ${r+1}, coluna ${c+1}`);
-        cell.addEventListener('click', () => onSelectCell(cell));
-        cell.addEventListener('keydown', e => {
-          if(e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            onSelectCell(cell);
-          }
-        });
-        wordsearchGridDiv.appendChild(cell);
-      }
-    }
-  }
-
-  function renderWordList() {
-    wordListDiv.innerHTML = '';
-    wordSearchWords.forEach(w => {
-      const span = document.createElement('span');
-      span.textContent = w;
-      span.id = 'word-' + w;
-      span.setAttribute('aria-label', `Palavra a encontrar: ${w}`);
-      wordListDiv.appendChild(span);
-    });
-  }
-
-  function resetSelection() {
-    wsSelectedCells.forEach(cell => cell.classList.remove('selected'));
-    wsSelectedCells = [];
-  }
-
-  function checkWord(cells) {
-    if(cells.length < 2) return null;
-    const wordFormed = cells.map(c => c.textContent).join('');
-    const wordRev = wordFormed.split('').reverse().join('');
-    if(wordSearchWords.includes(wordFormed)) return wordFormed;
-    if(wordSearchWords.includes(wordRev)) return wordRev;
-    return null;
-  }
-
-  function onSelectCell(cell){
-    if(wsSelectedCells.includes(cell)){
-      resetSelection();
-      return;
-    }
-    if(wsSelectedCells.length > 0) {
-      const last = wsSelectedCells[wsSelectedCells.length-1];
-      const dRow = Math.abs(parseInt(cell.dataset.row) - parseInt(last.dataset.row));
-      const dCol = Math.abs(parseInt(cell.dataset.col) - parseInt(last.dataset.col));
-
-      if(dRow > 1 || dCol > 1) return;
-      if(wsSelectedCells.length > 1){
-        const first = wsSelectedCells[0];
-        const second = wsSelectedCells[1];
-        const dRowOrigin = parseInt(second.dataset.row) - parseInt(first.dataset.row);
-        const dColOrigin = parseInt(second.dataset.col) - parseInt(first.dataset.col);
-        const dRowNew = parseInt(cell.dataset.row) - parseInt(last.dataset.row);
-        const dColNew = parseInt(cell.dataset.col) - parseInt(last.dataset.col);
-
-        if(dRowOrigin !== dRowNew || dColOrigin !== dColNew) return;
-      }
-    }
-    wsSelectedCells.push(cell);
-    cell.classList.add('selected');
-
-    const foundWord = checkWord(wsSelectedCells);
-    if(foundWord && !wsFoundWords.has(foundWord)) {
-      wsFoundWords.add(foundWord);
-      wsSelectedCells.forEach(c => {
-        c.classList.remove('selected');
-        c.classList.add('found');
-        c.setAttribute('aria-disabled', 'true');
-        c.tabIndex = -1;
-      });
-      const wordSpan = document.getElementById('word-' + foundWord);
-      if(wordSpan) wordSpan.classList.add('found');
-      resetSelection();
-
-      if(wsFoundWords.size === wordSearchWords.length) {
-        setTimeout(() => alert("Parabéns! Você encontrou todas as palavras!"), 200);
-      }
-    }
-  }
-
-  function startWordSearch(){
-    wsGrid = generateGrid(gridSize);
-    wordSearchWords.forEach(w => placeWord(wsGrid, w));
-    fillGridRandom(wsGrid);
-    renderGrid();
-    renderWordList();
-    wsFoundWords.clear();
-    wsSelectedCells = [];
-    toggleVisibility(wordSearchGame, true);
-    // Focus the first grid cell on load for accessibility
-    setTimeout(() => {
-      const firstCell = wordsearchGridDiv.querySelector('.ws-cell');
-      if(firstCell) firstCell.focus();
-    }, 250);
-  }
-
-  // ----------------- INITIAL LOAD -----------------
-  window.onload = () => {
-    startQuiz();
-  };
 </script>
 </body>
 </html>
